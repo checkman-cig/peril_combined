@@ -1,0 +1,198 @@
+lock-version = "1"
+
+[[task]]
+id = "tasks/task_census.py::task_census_features"
+state = "568a3a35da7a521200f6be8b779bb1df4fe4369621b0e75571504e11bffffcdf"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/interim/census_tract_crosswalk_2geo.csv" = "a01936034bac128b83ad8f9150309792c2f88433f12a7ad5b500fcc0b9f06e73"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/AZ/tl_2024_04_tract.shp" = "6812c370fc25f1fb343dcead09a1a5b1e2f146aed073d038bfb2f55d37889a14"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/CA/tl_2024_06_tract.shp" = "3ee5068384679c024f076fa6c247d12466434366f8fe520f4c269f718e8c99cb"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/NV/tl_2024_32_tract.shp" = "d0cc8cdf5bfcb335b395bbee5b78e53fde7414da469748b63e4fee1c9dd4b8c3"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/OR/tl_2024_41_tract.shp" = "b386635c7989b2094b1a6bae6de9bbc3731ab4e0796e79391b44dd2dd1ea04b5"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/WA/tl_2024_53_tract.shp" = "252a397ec29e619bf5bcd358588cd84aa2ec3f1c3055eb06125dbdeb93bfc1f1"
+"src/census/build_census_features.py" = "c6f664a233ee7f49f5ae0ff2c3c6c9add142e1fcae8c4d8ed41ba9a38c669052"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/census_geo_2024.csv" = "29d1685f170454048f1f87a237569a4bac56d74baac8a96d7896fb40b516af21"
+"C:/Users/checkman/Documents/projects/peril_combined/data/interim/census_tract_features_2024.csv" = "35fc55faaf3143b6f6db32954008546f4320635cdaa6e8f66341e38346b6f6ee"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/acs_tract_raw_2024.csv" = "b17c36c13b88edbff4ef1252a5fe0b740b96a96d933c34f10736833d0c89721c"
+
+[[task]]
+id = "tasks/task_census.py::task_census_geography"
+state = "568a3a35da7a521200f6be8b779bb1df4fe4369621b0e75571504e11bffffcdf"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_geocoded.csv" = "9bfadcb4c63dcedadb2743ca8d8d052696e8a0daead5e344d448bba44397ef69"
+"src/census/build_census_geography.py" = "bd9846baf0b33d2f3968f89562a87348b0e51f94c115289824568fc10905f856"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/interim/census_tract_crosswalk_2geo.csv" = "a01936034bac128b83ad8f9150309792c2f88433f12a7ad5b500fcc0b9f06e73"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/AZ/tl_2024_04_tract.shp" = "6812c370fc25f1fb343dcead09a1a5b1e2f146aed073d038bfb2f55d37889a14"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/AZ/tl_2024_04_tract.zip" = "5405732b0167843f07e0575c9a42dca99de2a83710cb5dafbe30db65ee9414ba"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/CA/tl_2024_06_tract.shp" = "3ee5068384679c024f076fa6c247d12466434366f8fe520f4c269f718e8c99cb"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/CA/tl_2024_06_tract.zip" = "8ad60e582b4d61be94ac072a4dd80d763255c0c987c616c7e6f9ffc7ee0bd318"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/NV/tl_2024_32_tract.shp" = "d0cc8cdf5bfcb335b395bbee5b78e53fde7414da469748b63e4fee1c9dd4b8c3"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/NV/tl_2024_32_tract.zip" = "259a472173e9b1dd313e1340c066ddc0e244722893491310b2f22a4072922835"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/OR/tl_2024_41_tract.shp" = "b386635c7989b2094b1a6bae6de9bbc3731ab4e0796e79391b44dd2dd1ea04b5"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/OR/tl_2024_41_tract.zip" = "5c429b7577273441ee7f045718cb9989a6fb03f6bf72167410efebbc144cba5c"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/WA/tl_2024_53_tract.shp" = "252a397ec29e619bf5bcd358588cd84aa2ec3f1c3055eb06125dbdeb93bfc1f1"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/census/tiger_2024/WA/tl_2024_53_tract.zip" = "60af16a9d108a55e8a9642dc38c77d10e77b143c2303758fc5bd626229e3a89f"
+
+[[task]]
+id = "tasks/task_claims.py::task_claims_tables"
+state = "baba68a169bde404deb68264b8162e851baacea1f91898ca34d4b4d30cb1221e"
+
+[task.depends_on]
+"scripts/01_build_claims_tables.py" = "df763be765bc0340d7d09ba28e1966383bf7d62bae1ded96ecac5eca799e63ee"
+"src/claims/common.py" = "3e34ff989e6a1b56ff236357c671ae4c5c83942d4d573d34f787da8f999e7553"
+"src/claims/fire.py" = "0539c913c6ec7fca6e1377f6ca6b694468c61310787a71e3391e1a90bb6fd476"
+"src/claims/storm.py" = "bd03afd0d553c0ff03d91adb6abe81b3077cf1c5b2a26f6a9454bb472d87f6c9"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_fire.csv" = "ec0ddd9bdfdb03411e15289c3e996fe29b694e044e3317c397e6ff5ae5043a5e"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_storm.csv" = "fe14a363fa860828dee58904298b25aa5b4d281fb3e6b6ee878b94b6799a4dab"
+
+[[task]]
+id = "tasks/task_feature_spatial_fire.py::task_feature_spatial_fire"
+state = "f2dfc8874f0e5556dbb878dfe20c3804a24f4a3f26bac311323906f4ef2efd75"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_geocoded.csv" = "9bfadcb4c63dcedadb2743ca8d8d052696e8a0daead5e344d448bba44397ef69"
+"C:/Users/checkman/Documents/projects/peril_combined/data/interim/spatial/prism/prism_jan_tmean_1991_2020_4km_5state.tif" = "be06946ad116b41fde867741c61b3d839bd2e0d86dd4d2c9d71ea98a042f73ef"
+"src/spatial/prism.py" = "cee34e61eb57c58f1ab115ec0cb22aba45c7aa3bbb332dc0c9f1db72326adf91"
+"src/spatial/spatial_tools.py" = "e750e0365f6c1c2a24ab82a517e4c0cb8e2c13850c13c3127d48fff09d7071d7"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/features_spatial_fire.csv" = "e1dfb0fd7742d4565ab71c84f8faefe1bc18c73d4dc6367367d5d78c463f2b0c"
+
+[[task]]
+id = "tasks/task_feature_spatial_storm.py::task_feature_spatial_storm"
+state = "663233eb5e12dc54f42e64c8d5ed846074b83ca4b78a246c86c3bcf3f34cbc14"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_geocoded.csv" = "9bfadcb4c63dcedadb2743ca8d8d052696e8a0daead5e344d448bba44397ef69"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/hrrr/compound_features.nc" = "b3035d1da5629b8b63603c2c2d3930d72fc1f8082dd59c9396bdd5e64e181640"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/hrrr/convective_features.nc" = "1f1d4cde7794f5b027e7b5f8c67b9061b6cd51a2dec058aba9e3382bf356f80f"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/hrrr/precip_features.nc" = "e99c99ffe9dd36c830b5016d43c20b738c37da5dce61003551fc4f5a3ce14029"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/hrrr/temp_features.nc" = "789fa6b3f8c6dadfcf81c89a676df09a3e1369bb7669fd19ecef43a02b4fcf7d"
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/hrrr/wind_features.nc" = "fdb2470eef8c7cde3114921d731619b164f23637e6ea35a793fcea1e89f2f03a"
+"src/spatial/hrrr.py" = "ef6efe82a1be69ea074c78429b1ce3edebcff738696c0cec8e80d22cbcf555c0"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/features_spatial_storm.csv" = "5f4496a2cb776c00b66082bde67ed39becd8730c660c14b763610bde6690075e"
+
+[[task]]
+id = "tasks/task_model_data.py::task_model_data"
+state = "8ea05162b00a6e71d5d3a2b884afcb15f57d3c147c47629757a1c0b45d82bbc0"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/census_geo_2024.csv" = "29d1685f170454048f1f87a237569a4bac56d74baac8a96d7896fb40b516af21"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_fire.csv" = "ec0ddd9bdfdb03411e15289c3e996fe29b694e044e3317c397e6ff5ae5043a5e"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/features_spatial_fire.csv" = "e1dfb0fd7742d4565ab71c84f8faefe1bc18c73d4dc6367367d5d78c463f2b0c"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_geocoded.csv" = "9bfadcb4c63dcedadb2743ca8d8d052696e8a0daead5e344d448bba44397ef69"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "ec1dbb5e3bea1996148a367e933c47131c91170eee802d27d1e21eef0d23fdc2"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "e5ba0cca9685d551d2c5cdb9963e07b987f7ac8612b09dcc607ae4a991a9d3c3"
+"scripts/02_build_model_data.py" = "2975ba6677a00d9a012765ebc8e774db1caa022847be1854f8836b54ca545650"
+"src/build_model_data.py" = "7e50e325c32617794470c6d735a28a549380b37c335921baa7a85d0c12719ee0"
+"src/config.py" = "857b4e92e4a4e51670911833a32f25c27cfba0f91ee2c8c66fd3f47d24005336"
+"tasks/task_model_data.py::task_model_data::peril" = "0"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/df_model_fire.parquet" = "f59005377ca26577af5e785efde67ae3e5d301959a5e537053376f898071715b"
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/plots/claims_by_year.png" = "6007c14e29816e93525917573f8c2eabd22a5635448310644850ac9bd167c7c3"
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/plots/loss_incurred_by_year.png" = "1895e3599bf2bc276945bce2eee168fa7aed1ffdcb408e1c437f6c9d4fea2dcc"
+
+[[task]]
+id = "tasks/task_model_data.py::task_model_data[fire]"
+state = "10c0f995d80f9b95e67802aed196c9a665ccfad245e0517ecdf65636e75ab254"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/census_geo_2024.csv" = "29d1685f170454048f1f87a237569a4bac56d74baac8a96d7896fb40b516af21"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_fire.csv" = "ec0ddd9bdfdb03411e15289c3e996fe29b694e044e3317c397e6ff5ae5043a5e"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/features_spatial_fire.csv" = "e1dfb0fd7742d4565ab71c84f8faefe1bc18c73d4dc6367367d5d78c463f2b0c"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_geocoded.csv" = "9bfadcb4c63dcedadb2743ca8d8d052696e8a0daead5e344d448bba44397ef69"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "ec1dbb5e3bea1996148a367e933c47131c91170eee802d27d1e21eef0d23fdc2"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "e5ba0cca9685d551d2c5cdb9963e07b987f7ac8612b09dcc607ae4a991a9d3c3"
+"scripts/02_build_model_data.py" = "2975ba6677a00d9a012765ebc8e774db1caa022847be1854f8836b54ca545650"
+"src/build_model_data.py" = "e13b57b4c98d49790932443b8049e94e2823816cf110760ce69d6789ecfaeaa9"
+"src/config.py" = "857b4e92e4a4e51670911833a32f25c27cfba0f91ee2c8c66fd3f47d24005336"
+"tasks/task_model_data.py::task_model_data[fire]::peril" = "0"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/df_model_fire.parquet" = "f59005377ca26577af5e785efde67ae3e5d301959a5e537053376f898071715b"
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/plots/claims_by_year.png" = "6007c14e29816e93525917573f8c2eabd22a5635448310644850ac9bd167c7c3"
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/plots/loss_incurred_by_year.png" = "1895e3599bf2bc276945bce2eee168fa7aed1ffdcb408e1c437f6c9d4fea2dcc"
+
+[[task]]
+id = "tasks/task_model_data.py::task_model_data[storm]"
+state = "10c0f995d80f9b95e67802aed196c9a665ccfad245e0517ecdf65636e75ab254"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/census_geo_2024.csv" = "29d1685f170454048f1f87a237569a4bac56d74baac8a96d7896fb40b516af21"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_storm.csv" = "fe14a363fa860828dee58904298b25aa5b4d281fb3e6b6ee878b94b6799a4dab"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/features_spatial_storm.csv" = "5f4496a2cb776c00b66082bde67ed39becd8730c660c14b763610bde6690075e"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_geocoded.csv" = "9bfadcb4c63dcedadb2743ca8d8d052696e8a0daead5e344d448bba44397ef69"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "ec1dbb5e3bea1996148a367e933c47131c91170eee802d27d1e21eef0d23fdc2"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "e5ba0cca9685d551d2c5cdb9963e07b987f7ac8612b09dcc607ae4a991a9d3c3"
+"scripts/02_build_model_data.py" = "2975ba6677a00d9a012765ebc8e774db1caa022847be1854f8836b54ca545650"
+"src/build_model_data.py" = "e13b57b4c98d49790932443b8049e94e2823816cf110760ce69d6789ecfaeaa9"
+"src/config.py" = "857b4e92e4a4e51670911833a32f25c27cfba0f91ee2c8c66fd3f47d24005336"
+"tasks/task_model_data.py::task_model_data[storm]::peril" = "0"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_storm/df_model_storm.parquet" = "b33573815eaaf76f7646e5f2538320e588f2b8fa395f216d7ae9ea8ce76979c5"
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_storm/plots/claims_by_year.png" = "6d426543946e8326da48a0fcdbb1b6bfb504288312f57125bb3aba88bcab5dca"
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_storm/plots/loss_incurred_by_year.png" = "6211c8acfc72cd0d53e821d41ab9e10806b2713e810e7db75b8cd33004417fdf"
+
+[[task]]
+id = "tasks/task_policy.py::task_policy_tables"
+state = "6c8d656553c3a90a8a24f8426fafe6b62e43f9e368405370ae8d4b254e019547"
+
+[task.depends_on]
+"scripts/01_build_policy_tables.py" = "7e548d744c1bf3aecbc8b0ceac9b0b901ebfd328275ef67c5d941a49b7ff49ad"
+"src/build_policy.py" = "1ecefad6f931c8f57701eaaeaa637fe38512c8cabc21b4f8cb43283227d1cc64"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "ec1dbb5e3bea1996148a367e933c47131c91170eee802d27d1e21eef0d23fdc2"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "e5ba0cca9685d551d2c5cdb9963e07b987f7ac8612b09dcc607ae4a991a9d3c3"
+
+[[task]]
+id = "tasks/task_source_prism.py::task_source_prism_january_tmean"
+state = "cbbae40f508a1beecb7ff011f431d1f3e13be7d8fb4ec58dc8e3ab3d9baa42d2"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/prism/prism_tmean_us_25m_202001_avg_30y.zip" = "72bd3e14f796b07cce1619ae3663be634d0f03654c77cff84208f22046295ddc"
+"data/raw/FIVE_STATE_EXTENT/FIVE_STATE_EXTENT.dbf" = "c9760b33faefe891075e86329d2b54338d9af802bb2f53fba41a1676e8d3acef"
+"data/raw/FIVE_STATE_EXTENT/FIVE_STATE_EXTENT.prj" = "276f61fb9ac2378218991d323f40bcb1a12072d8bdeb93353cc5a8543196e695"
+"data/raw/FIVE_STATE_EXTENT/FIVE_STATE_EXTENT.shp" = "9641e8f904f81508018af1e8e6840ee3d328d8c1bd2f05ef1a227b9b38cf093d"
+"data/raw/FIVE_STATE_EXTENT/FIVE_STATE_EXTENT.shx" = "430b40e5f8fc08584758695178625ea7d501ec1f36ed3bd19aee876bf329f0ad"
+"src/spatial/prism.py" = "cee34e61eb57c58f1ab115ec0cb22aba45c7aa3bbb332dc0c9f1db72326adf91"
+"src/spatial/spatial_tools.py" = "e750e0365f6c1c2a24ab82a517e4c0cb8e2c13850c13c3127d48fff09d7071d7"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/interim/spatial/prism/prism_jan_tmean_1991_2020_4km_5state.tif" = "be06946ad116b41fde867741c61b3d839bd2e0d86dd4d2c9d71ea98a042f73ef"
+
+[[task]]
+id = "tasks/task_spatial_fire.py::task_build_spatial_fire_features"
+state = "1a2782aefbb313202d58310435530bc3fcf69a5b4b7e48c7fbe493c45dc4debe"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_geocoded.csv" = "9bfadcb4c63dcedadb2743ca8d8d052696e8a0daead5e344d448bba44397ef69"
+"C:/Users/checkman/Documents/projects/peril_combined/data/interim/spatial/fire/prism_jan_tmean_1991_2020_4km_5state.tif" = "8296465004297280d0dba013e2b8240e15053038abffc82c4ff58b863c05a81d"
+"src/spatial/spatial_join.py" = "3ed646e2e4b0aaa91149443090a306a6fc95730bef467c785acfff1cbc60378b"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/features_spatial_fire.csv" = "15975131a0d1bfe382da2e2b11d16bc507071f20953830fbbd588116d186ccfd"
+
+[[task]]
+id = "tasks/task_spatial_fire.py::task_prepare_fire_prism"
+state = "1a2782aefbb313202d58310435530bc3fcf69a5b4b7e48c7fbe493c45dc4debe"
+
+[task.depends_on]
+"C:/Users/checkman/Documents/projects/peril_combined/data/raw/prism/prism_tmean_us_25m_202001_avg_30y.zip" = "72bd3e14f796b07cce1619ae3663be634d0f03654c77cff84208f22046295ddc"
+"data/raw/FIVE_STATE_EXTENT/FIVE_STATE_EXTENT.shp" = "9641e8f904f81508018af1e8e6840ee3d328d8c1bd2f05ef1a227b9b38cf093d"
+"src/spatial/fire_prism.py" = "0a230d7bce8b4299681e644dd23659872319ae0811278b388fadcac4d7cb701d"
+
+[task.produces]
+"C:/Users/checkman/Documents/projects/peril_combined/data/interim/spatial/fire/prism_jan_tmean_1991_2020_4km_5state.tif" = "8296465004297280d0dba013e2b8240e15053038abffc82c4ff58b863c05a81d"

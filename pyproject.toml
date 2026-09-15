@@ -1,0 +1,3 @@
+[tool.pytask.ini_options]
+paths = ["tasks"]
+editor_url_scheme = "vscode"

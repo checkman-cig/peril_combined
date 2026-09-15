@@ -1,0 +1,3 @@
+SQL queries are from this folder: G:\Product Reviews\Rate Reviews\2026Q2\Prep\Indication Data Pull\Queries
+
+basic coverages (pull_house) is from: https://github.com/CIGInsurance/DataAnalytics/blob/master/DataScience/RegularReporting/FieldOps/Monthly/dash_pl_summary.sql

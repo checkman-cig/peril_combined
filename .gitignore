@@ -1,0 +1,27 @@
+# Data
+data/
+
+# Pytask cache
+.pytask/
+
+# VS Code settings
+.vscode/
+
+# Archive / backup files
+*.zip
+
+# Generated PDFs
+*.pdf
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment / secrets
+.env
+
+# Temporarily, notebooks
+notebooks/
