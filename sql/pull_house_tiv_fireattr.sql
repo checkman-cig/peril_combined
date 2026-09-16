@@ -357,6 +357,54 @@ CASE
     WHEN dp.business_line = 'Dwelling Fire' THEN df.special_form_coverage
 END AS special_form_coverage,
 
+CASE
+    WHEN dp.business_line = 'Homeowner'
+         AND NVL(dh.sprinkler_all, 0) = 1
+         AND NVL(dh.sprinkler, 0) = 1
+        THEN 'All'
+    WHEN dp.business_line = 'Homeowner'
+         AND NVL(dh.sprinkler_all, 0) = 1
+        THEN 'Partial'
+
+    WHEN dp.business_line = 'Dwelling Fire'
+         AND NVL(df.sprinkler_all_rooms, 0) = 1
+         AND NVL(df.sprinkler_all, 0) = 1
+        THEN 'All'
+    WHEN dp.business_line = 'Dwelling Fire'
+         AND NVL(df.sprinkler_all_rooms, 0) = 1
+        THEN 'Partial'
+
+    ELSE 'None'
+END AS sprinkler_status,
+
+
+CASE
+    WHEN dp.business_line = 'Homeowner'
+        THEN dh.central_alarm
+    WHEN dp.business_line = 'Dwelling Fire'
+        THEN df.central_fire
+END AS central_alarm,
+
+CASE
+    WHEN dp.business_line = 'Homeowner'
+        THEN dh.direct_alarm
+    WHEN dp.business_line = 'Dwelling Fire'
+        THEN df.direct_alarm
+END AS direct_alarm,
+
+CASE
+    WHEN dp.business_line = 'Dwelling Fire'
+        THEN df.local_fire
+END AS local_fire,
+
+-- Number of years a policy has existed
+EXTRACT(YEAR FROM dp.term_effective_date)
+- EXTRACT(YEAR FROM pol.inception_date) AS policy_tenure_years,
+
+-- Credit
+    dh.credit_score_use AS ho_credit_score_use,
+    df.credit_surcharge_amt AS df_credit_surcharge_amt,
+
 
     ho.residence_type AS residence_type,
     ho.occupant AS occupant,
@@ -365,7 +413,7 @@ END AS special_form_coverage,
     ho.fire_station_miles AS ho_fire_station_miles,
     ho.fireplace_spark_arrestor AS fireplace_spark_arrestor,
     ho.nbr_of_years_insured AS nbr_of_years_insured,
-    ho.central_alarm_type AS central_alarm_type,
+    ho.central_alarm_type AS ho_central_alarm_type,
     ho.nbr_active_df_policies AS nbr_active_df_policies
 
 FROM dec_policy dp

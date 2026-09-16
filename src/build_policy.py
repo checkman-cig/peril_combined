@@ -11,12 +11,12 @@ SELECT *
 FROM policy_peril_dedup
 """
 
-POLICY_YEAR_VALUE_COLS = {
-    "tiv": "tiv",
-    "cov_a_dwelling": "Cov. A - Dwelling",
-    "contents_limit": "contents_limit",
-    "loss_of_use": "Cov. D (HO) - Loss of Use",
-}
+# POLICY_YEAR_VALUE_COLS = {
+#     "tiv": "tiv",
+#     "cov_a_dwelling": "Cov. A - Dwelling",
+#     "contents_limit": "contents_limit",
+#     "loss_of_use": "Cov. D (HO) - Loss of Use",
+# }
 
 POLICY_YEAR_VALUE_COLS = {
     "tiv": ("tiv", "last"),
@@ -28,8 +28,21 @@ POLICY_YEAR_VALUE_COLS = {
     "residence_type": ("residence_type", "last"),
     "occupant": ("occupant", "last"),
     "nbr_of_years_insured": ("nbr_of_years_insured", "last"),
-    "central_alarm_type": ("central_alarm_type", "last"),
+    "ho_central_alarm_type": ("ho_central_alarm_type", "last"),
     "nbr_active_df_policies": ("nbr_active_df_policies", "last"),
+
+    # Credit
+    "ho_credit_score_use": ("ho_credit_score_use", "last"),
+    "df_credit_surcharge_amt": ("df_credit_surcharge_amt", "last"),
+
+    # Fire protection
+    "sprinkler_status": ("sprinkler_status", "last"),
+    "central_alarm": ("central_alarm", "last"),
+    "direct_alarm": ("direct_alarm", "last"),
+    "local_fire": ("local_fire", "last"),
+    "fire_station_miles": ("fire_station_miles", "last"),
+    "hydrant_feet": ("hydrant_feet", "last"),
+    "brush_area": ("brush_area", "last"),
 
     "policy_form": ("policy_form", "last"),
     "occupancy": ("occupancy", "last"),
@@ -44,6 +57,9 @@ POLICY_YEAR_VALUE_COLS = {
 
     "extended_coverage": ("extended_coverage", "last"),
     "special_form_coverage": ("special_form_coverage", "last"),
+
+    # Other new
+    "policy_tenure_years": ("policy_tenure_years", "last"),
 }
 
 
