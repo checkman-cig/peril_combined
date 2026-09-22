@@ -3,6 +3,9 @@
 import pandas as pd
 
 
+WILDFIRE_CATEGORY = "Wildfire / vegetation / smoke-ash exposure"
+
+
 def assign_primary_loss_category(df):
     """Add primary_loss_category for fire claims."""
     df_claims = df.copy()
@@ -159,3 +162,10 @@ def assign_primary_loss_category(df):
     assign_category("Generic dwelling fire, no details", generic_dwelling)
 
     return df_claims
+
+
+def exclude_wildfire_claims(df):
+    """Remove wildfire claims before policy-building-year aggregation."""
+    return df.loc[
+        ~df["primary_loss_category"].eq(WILDFIRE_CATEGORY)
+    ].copy()

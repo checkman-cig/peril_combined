@@ -18,11 +18,13 @@ _CLAIMS_DEPENDENCIES = {
     "common": PROJECT_ROOT / "src" / "claims" / "common.py",
     "fire": PROJECT_ROOT / "src" / "claims" / "fire.py",
     "storm": PROJECT_ROOT / "src" / "claims" / "storm.py",
+    "policy_year": LOCAL_DATA_ROOT / "final" / "policy_year.csv",
 }
 
 _CLAIMS_PRODUCTS = {
     "fire": LOCAL_DATA_ROOT / "final" / "claims_fire.csv",
     "storm": LOCAL_DATA_ROOT / "final" / "claims_storm.csv",
+    "history": LOCAL_DATA_ROOT / "final" / "claims_history.csv",
 }
 
 

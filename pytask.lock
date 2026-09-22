@@ -41,16 +41,18 @@ state = "568a3a35da7a521200f6be8b779bb1df4fe4369621b0e75571504e11bffffcdf"
 
 [[task]]
 id = "tasks/task_claims.py::task_claims_tables"
-state = "baba68a169bde404deb68264b8162e851baacea1f91898ca34d4b4d30cb1221e"
+state = "86f4cbbd0c52f7aaba6517022e3b7adde79aec10d33329c09098456bb303df89"
 
 [task.depends_on]
-"scripts/01_build_claims_tables.py" = "df763be765bc0340d7d09ba28e1966383bf7d62bae1ded96ecac5eca799e63ee"
-"src/claims/common.py" = "3e34ff989e6a1b56ff236357c671ae4c5c83942d4d573d34f787da8f999e7553"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "bad8a142c9473db236edeb257dd81b869232ac0b85a06f7761e5f1263a74e61f"
+"scripts/01_build_claims_tables.py" = "7893a25d690776d8a5c5ae8bc207c210a8956ab70726683f3a2aa3b7db446daf"
+"src/claims/common.py" = "582bde69a8e67664f033eac842f0bdb15940bacc58aa1cd0543a34ea188cd835"
 "src/claims/fire.py" = "0539c913c6ec7fca6e1377f6ca6b694468c61310787a71e3391e1a90bb6fd476"
 "src/claims/storm.py" = "bd03afd0d553c0ff03d91adb6abe81b3077cf1c5b2a26f6a9454bb472d87f6c9"
 
 [task.produces]
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_fire.csv" = "ec0ddd9bdfdb03411e15289c3e996fe29b694e044e3317c397e6ff5ae5043a5e"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_history.csv" = "451da86c5e13859620d7434ce365d7adfe28aae0a5dd6d2b51cccb83b3b2faf2"
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_storm.csv" = "fe14a363fa860828dee58904298b25aa5b4d281fb3e6b6ee878b94b6799a4dab"
 
 [[task]]
@@ -105,43 +107,45 @@ state = "8ea05162b00a6e71d5d3a2b884afcb15f57d3c147c47629757a1c0b45d82bbc0"
 
 [[task]]
 id = "tasks/task_model_data.py::task_model_data[fire]"
-state = "10c0f995d80f9b95e67802aed196c9a665ccfad245e0517ecdf65636e75ab254"
+state = "9912dd25985eaca084356d6929bf3a92d6f7e736135589517bc0a9da9f902422"
 
 [task.depends_on]
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/census_geo_2024.csv" = "29d1685f170454048f1f87a237569a4bac56d74baac8a96d7896fb40b516af21"
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_fire.csv" = "ec0ddd9bdfdb03411e15289c3e996fe29b694e044e3317c397e6ff5ae5043a5e"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_history.csv" = "451da86c5e13859620d7434ce365d7adfe28aae0a5dd6d2b51cccb83b3b2faf2"
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/features_spatial_fire.csv" = "e1dfb0fd7742d4565ab71c84f8faefe1bc18c73d4dc6367367d5d78c463f2b0c"
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_geocoded.csv" = "9bfadcb4c63dcedadb2743ca8d8d052696e8a0daead5e344d448bba44397ef69"
-"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "ec1dbb5e3bea1996148a367e933c47131c91170eee802d27d1e21eef0d23fdc2"
-"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "e5ba0cca9685d551d2c5cdb9963e07b987f7ac8612b09dcc607ae4a991a9d3c3"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "e2f541ea38d8fe7323efb0398a22562debd9de3300da61b872a14fd0cdf90453"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "bad8a142c9473db236edeb257dd81b869232ac0b85a06f7761e5f1263a74e61f"
 "scripts/02_build_model_data.py" = "2975ba6677a00d9a012765ebc8e774db1caa022847be1854f8836b54ca545650"
-"src/build_model_data.py" = "e13b57b4c98d49790932443b8049e94e2823816cf110760ce69d6789ecfaeaa9"
+"src/build_model_data.py" = "ece623ecbd1df75f8296e6e5a19bbb23bb9ee2a5f5666b36b536d67d67a4b744"
 "src/config.py" = "857b4e92e4a4e51670911833a32f25c27cfba0f91ee2c8c66fd3f47d24005336"
 "tasks/task_model_data.py::task_model_data[fire]::peril" = "0"
 
 [task.produces]
-"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/df_model_fire.parquet" = "f59005377ca26577af5e785efde67ae3e5d301959a5e537053376f898071715b"
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/df_model_fire.parquet" = "d1e498ff31e0acb3831631efd0a02a5f740e98c020059bda58971262537e86af"
 "C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/plots/claims_by_year.png" = "6007c14e29816e93525917573f8c2eabd22a5635448310644850ac9bd167c7c3"
 "C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_fire/plots/loss_incurred_by_year.png" = "1895e3599bf2bc276945bce2eee168fa7aed1ffdcb408e1c437f6c9d4fea2dcc"
 
 [[task]]
 id = "tasks/task_model_data.py::task_model_data[storm]"
-state = "10c0f995d80f9b95e67802aed196c9a665ccfad245e0517ecdf65636e75ab254"
+state = "9912dd25985eaca084356d6929bf3a92d6f7e736135589517bc0a9da9f902422"
 
 [task.depends_on]
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/census_geo_2024.csv" = "29d1685f170454048f1f87a237569a4bac56d74baac8a96d7896fb40b516af21"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_history.csv" = "451da86c5e13859620d7434ce365d7adfe28aae0a5dd6d2b51cccb83b3b2faf2"
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/claims_storm.csv" = "fe14a363fa860828dee58904298b25aa5b4d281fb3e6b6ee878b94b6799a4dab"
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/features_spatial_storm.csv" = "5f4496a2cb776c00b66082bde67ed39becd8730c660c14b763610bde6690075e"
 "C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_geocoded.csv" = "9bfadcb4c63dcedadb2743ca8d8d052696e8a0daead5e344d448bba44397ef69"
-"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "ec1dbb5e3bea1996148a367e933c47131c91170eee802d27d1e21eef0d23fdc2"
-"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "e5ba0cca9685d551d2c5cdb9963e07b987f7ac8612b09dcc607ae4a991a9d3c3"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "e2f541ea38d8fe7323efb0398a22562debd9de3300da61b872a14fd0cdf90453"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "bad8a142c9473db236edeb257dd81b869232ac0b85a06f7761e5f1263a74e61f"
 "scripts/02_build_model_data.py" = "2975ba6677a00d9a012765ebc8e774db1caa022847be1854f8836b54ca545650"
-"src/build_model_data.py" = "e13b57b4c98d49790932443b8049e94e2823816cf110760ce69d6789ecfaeaa9"
+"src/build_model_data.py" = "ece623ecbd1df75f8296e6e5a19bbb23bb9ee2a5f5666b36b536d67d67a4b744"
 "src/config.py" = "857b4e92e4a4e51670911833a32f25c27cfba0f91ee2c8c66fd3f47d24005336"
 "tasks/task_model_data.py::task_model_data[storm]::peril" = "0"
 
 [task.produces]
-"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_storm/df_model_storm.parquet" = "b33573815eaaf76f7646e5f2538320e588f2b8fa395f216d7ae9ea8ce76979c5"
+"C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_storm/df_model_storm.parquet" = "71cb1ae1e13818eb36a8b0986c5600ecb1c53623873414db5cfe6a004a5c5302"
 "C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_storm/plots/claims_by_year.png" = "6d426543946e8326da48a0fcdbb1b6bfb504288312f57125bb3aba88bcab5dca"
 "C:/Users/checkman/Documents/projects/peril_combined/data/output/peril_storm/plots/loss_incurred_by_year.png" = "6211c8acfc72cd0d53e821d41ab9e10806b2713e810e7db75b8cd33004417fdf"
 
@@ -151,11 +155,11 @@ state = "6c8d656553c3a90a8a24f8426fafe6b62e43f9e368405370ae8d4b254e019547"
 
 [task.depends_on]
 "scripts/01_build_policy_tables.py" = "7e548d744c1bf3aecbc8b0ceac9b0b901ebfd328275ef67c5d941a49b7ff49ad"
-"src/build_policy.py" = "1ecefad6f931c8f57701eaaeaa637fe38512c8cabc21b4f8cb43283227d1cc64"
+"src/build_policy.py" = "5696c13ffe85e302280250ca617fa0f8aec0ca4dec7e989d0664676e3c21d373"
 
 [task.produces]
-"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "ec1dbb5e3bea1996148a367e933c47131c91170eee802d27d1e21eef0d23fdc2"
-"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "e5ba0cca9685d551d2c5cdb9963e07b987f7ac8612b09dcc607ae4a991a9d3c3"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_location.csv" = "e2f541ea38d8fe7323efb0398a22562debd9de3300da61b872a14fd0cdf90453"
+"C:/Users/checkman/Documents/projects/peril_combined/data/final/policy_year.csv" = "bad8a142c9473db236edeb257dd81b869232ac0b85a06f7761e5f1263a74e61f"
 
 [[task]]
 id = "tasks/task_source_prism.py::task_source_prism_january_tmean"

@@ -31,6 +31,7 @@ for peril in PERILS:
         "policy_geocoded": final_dir / "policy_geocoded.csv",
         "census": final_dir / "census_geo_2024.csv",
         "claims": final_dir / f"claims_{peril}.csv",
+        "claims_history": final_dir / "claims_history.csv",
         "spatial_features": final_dir / f"features_spatial_{peril}.csv",
     }
 

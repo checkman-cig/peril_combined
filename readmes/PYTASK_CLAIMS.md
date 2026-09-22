@@ -6,20 +6,24 @@ The claims workflow has one task:
 task_claims_tables
 ```
 
-It runs `scripts/01_build_claims_tables.py` once, loads `peril_loss_unit` once, and creates:
+It runs `scripts/01_build_claims_tables.py` once, loads the HO and DF unit-level claim tables once, and creates:
 
 ```text
 data/final/claims_fire.csv
 data/final/claims_storm.csv
+data/final/claims_history.csv
 ```
 
-The task tracks these code dependencies:
+`claims_history.csv` uses `policy_year.csv` as its policy-building-year scaffold and contains full prior claim counts and claim recency features.
+
+The task tracks these code/data dependencies:
 
 ```text
 scripts/01_build_claims_tables.py
 src/claims/common.py
 src/claims/fire.py
 src/claims/storm.py
+data/final/policy_year.csv
 ```
 
 ## Test

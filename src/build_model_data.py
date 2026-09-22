@@ -193,6 +193,10 @@ def build_model_data(peril: str, data_root: str | Path) -> Path:
         final_dir / f"claims_{peril}.csv",
         f"claims_{peril}",
     )
+    df_claims_history = load_csv(
+        final_dir / "claims_history.csv",
+        "claims_history",
+    )
     df_spatial = load_csv(
         final_dir / f"features_spatial_{peril}.csv",
         f"features_spatial_{peril}",
@@ -211,6 +215,13 @@ def build_model_data(peril: str, data_root: str | Path) -> Path:
         df_claims,
         CLAIMS_KEYS,
         "Claims join",
+        "one_to_one",
+    )
+    df_model = merge_with_diagnostics(
+        df_model,
+        df_claims_history,
+        CLAIMS_KEYS,
+        "Claim history join",
         "one_to_one",
     )
     df_model = merge_with_diagnostics(
