@@ -1,10 +1,9 @@
 """
 Build peril claims input tables.
 
-This script creates peril claim files and shared claim-history features:
+This script creates peril claim files:
     data/final/claims_fire.csv
     data/final/claims_storm.csv
-    data/final/claims_history.csv
 
 Run from the project root:
     python scripts/01_build_claims_tables.py --output-mode local
@@ -24,7 +23,6 @@ Output modes:
 
 Notes:
     - The HO and DF unit-level Oracle claim tables are loaded once.
-    - claims_history.csv uses policy_year.csv as the policy-building-year scaffold.
     - Standalone run asks for the Oracle password.
     - When called from build_inputs.py, pass in claims_engine so the password
       only needs to be entered once.
@@ -38,7 +36,6 @@ import sys
 import os
 from datetime import datetime
 
-import pandas as pd
 from sqlalchemy import create_engine
 
 
@@ -50,9 +47,6 @@ VALID_OUTPUT_MODES = {
     "local_and_network",
     "network",
 }
-
-
-CLAIM_HISTORY_YEARS = 100
 
 
 PERIL_CONFIGS = {
@@ -198,25 +192,6 @@ def run(
     try:
         print("Loading peril_loss_unit tables once...")
         df_peril_loss = claims_common.load_peril_loss_unit(claims_engine)
-
-        policy_year_path = main_output_dir / "policy_year.csv"
-        print(f"Loading policy-year scaffold: {policy_year_path}")
-        df_policy_year = pd.read_csv(
-            policy_year_path,
-            usecols=claims_common.HISTORY_KEYS,
-            low_memory=False,
-        )
-
-        print("Building shared claim history...")
-        df_claims_history = claims_common.build_claim_history(
-            df_peril_loss=df_peril_loss,
-            df_policy_year=df_policy_year,
-            claim_history_years=CLAIM_HISTORY_YEARS,
-        )
-        history_output_path = main_output_dir / "claims_history.csv"
-        df_claims_history.to_csv(history_output_path, index=False)
-        saved_files.append(history_output_path)
-        print(f"Saved claim history to: {history_output_path}")
 
         for peril in perils:
             config = PERIL_CONFIGS[peril]
