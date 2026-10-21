@@ -16,7 +16,10 @@ LOCATION_KEYS = ["policy_search_nbr", "building_key", "location_number"]
 
 def load_csv(path: Path, label: str) -> pd.DataFrame:
     """Load a CSV and standardize its column names."""
-    df = pd.read_csv(path, low_memory=False)
+    if label in {"policy_year", "policy_location"}:
+        df = pd.read_csv(path, low_memory=False, keep_default_na=False, na_values=[""])
+    else:
+        df = pd.read_csv(path, low_memory=False)
     df.columns = df.columns.str.lower()
     print(f"Loaded {label}: {len(df):,} rows")
     return df
@@ -157,7 +160,7 @@ def add_derived_features(df_model: pd.DataFrame) -> pd.DataFrame:
         df_model["year"] - df_model["construction_year"]
     )
     df_model["cov_a_per_sqft"] = (
-        df_model["cov_a_dwelling"] / df_model["sq_ft_dwelling"]
+        df_model["dwelling_limit"] / df_model["sq_ft_dwelling"]
     )
     df_model["tiv_per_sqft"] = (
         df_model["tiv"] / df_model["sq_ft_dwelling"]
@@ -257,6 +260,46 @@ def build_model_data(peril: str, data_root: str | Path) -> Path:
     )
 
     df_model = df_model.copy()
+
+    df_model["construction_year"] = pd.to_numeric(
+        df_model["construction_year"], errors="coerce"
+    )
+
+    df_model["roof_type"] = (
+        df_model["roof_type"]
+        .fillna("Missing")
+        .astype(str)
+        .str.strip()
+        .replace({"": "Missing", "Tar and Gravel": "Tar & Gravel"})
+    )
+
+    df_model["property_state"] = (
+        df_model["property_state"]
+        .fillna("Missing")
+        .astype(str)
+        .str.strip()
+        .str.upper()
+    )
+
+    df_model["protection_class"] = (
+        df_model["protection_class"]
+        .replace({"8A": 8.5, "8B": 8.5, "9A": 9.5})
+        .astype(float)
+    )
+
+    df_model["nbr_of_families"] = pd.to_numeric(
+        df_model["nbr_of_families"]
+        .astype("string")
+        .str.extract(r"(\d+)", expand=False),
+        errors="coerce",
+    )
+
+    df_model["ho_central_alarm_type"] = df_model["ho_central_alarm_type"].replace(
+        {"Central Fire And Burglar": "Central Fire and Burglar"}
+    )
+
+    df_model["zip3"] = df_model["property_zipcode"].astype("string").str[:3]
+
 
     df_model = add_derived_features(df_model)
 

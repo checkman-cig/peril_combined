@@ -20,9 +20,11 @@ FROM policy_peril_dedup
 
 POLICY_YEAR_VALUE_COLS = {
     "tiv": ("tiv", "last"),
-    "cov_a_dwelling": ("Cov. A - Dwelling", "last"),
+    "business_line": ("business_line", "last"),
+    "dwelling_limit": ("dwelling_limit", "last"),
+    "structure_limit": ("structure_limit", "last"),
     "contents_limit": ("contents_limit", "last"),
-    "loss_of_use": ("Cov. D (HO) - Loss of Use", "last"),
+    "loss_of_use_limit": ("loss_of_use_limit", "last"),
 
     "dic_coverage": ("dic_coverage", "last"),
     "residence_type": ("residence_type", "last"),
@@ -48,17 +50,9 @@ POLICY_YEAR_VALUE_COLS = {
     "occupancy": ("occupancy", "last"),
     "nbr_of_families": ("nbr_of_families", "last"),
     "protection_class": ("protection_class", "last"),
-
-    "dwelling_limit": ("dwelling_limit", "last"),
-    "structure_limit": ("structure_limit", "last"),
-    "property_limit": ("property_limit", "last"),
-    "loss_of_use_limit": ("loss_of_use_limit", "last"),
     "deductible": ("deductible", "last"),
 
     "extended_coverage": ("extended_coverage", "last"),
-    "special_form_coverage": ("special_form_coverage", "last"),
-
-    # Other new
     "policy_tenure_years": ("policy_tenure_years", "last"),
 }
 

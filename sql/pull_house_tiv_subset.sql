@@ -114,8 +114,8 @@ WHERE building_key IS NULL
 ALTER TABLE policy_peril_dedup DROP COLUMN valid_building_key_count;
 ALTER TABLE policy_peril_dedup DROP COLUMN fallback_building_key;
 ALTER TABLE policy_peril_dedup DROP COLUMN fallback_claim_key;
-ALTER TABLE policy_peril_dedup DROP COLUMN total_unit_prem;
-ALTER TABLE policy_peril_dedup DROP COLUMN rn;
+-- ALTER TABLE policy_peril_dedup DROP COLUMN total_unit_prem;
+-- ALTER TABLE policy_peril_dedup DROP COLUMN rn;
 
 
 -- CREATE TABLE policy_TIV_forWF_CAT_dedup AS
