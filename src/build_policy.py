@@ -11,48 +11,29 @@ SELECT *
 FROM policy_peril_dedup
 """
 
-# POLICY_YEAR_VALUE_COLS = {
-#     "tiv": "tiv",
-#     "cov_a_dwelling": "Cov. A - Dwelling",
-#     "contents_limit": "contents_limit",
-#     "loss_of_use": "Cov. D (HO) - Loss of Use",
-# }
-
 POLICY_YEAR_VALUE_COLS = {
-    "tiv": ("tiv", "last"),
+    "tiv": ("tiv", "weighted_mean"),
     "business_line": ("business_line", "last"),
-    "dwelling_limit": ("dwelling_limit", "last"),
-    "structure_limit": ("structure_limit", "last"),
-    "contents_limit": ("contents_limit", "last"),
-    "loss_of_use_limit": ("loss_of_use_limit", "last"),
+    "dwelling_limit": ("dwelling_limit", "weighted_mean"),
+    "structure_limit": ("structure_limit", "weighted_mean"),
+    "contents_limit": ("contents_limit", "weighted_mean"),
+    "loss_of_use_limit": ("loss_of_use_limit", "weighted_mean"),
 
-    "dic_coverage": ("dic_coverage", "last"),
-    "residence_type": ("residence_type", "last"),
-    "occupant": ("occupant", "last"),
-    "nbr_of_years_insured": ("nbr_of_years_insured", "last"),
-    "ho_central_alarm_type": ("ho_central_alarm_type", "last"),
-    "nbr_active_df_policies": ("nbr_active_df_policies", "last"),
-
-    # Credit
-    "ho_credit_score_use": ("ho_credit_score_use", "last"),
-    "df_credit_surcharge_amt": ("df_credit_surcharge_amt", "last"),
+    "dic_coverage": ("dic_coverage", "weighted_mode"),
+    "ho_credit_score_use": ("ho_credit_score_use", "weighted_mean"),
 
     # Fire protection
-    "sprinkler_status": ("sprinkler_status", "last"),
-    "central_alarm": ("central_alarm", "last"),
-    "direct_alarm": ("direct_alarm", "last"),
-    "local_fire": ("local_fire", "last"),
-    "fire_station_miles": ("fire_station_miles", "last"),
-    "hydrant_feet": ("hydrant_feet", "last"),
-    "brush_area": ("brush_area", "last"),
+    "sprinkler_status": ("sprinkler_status", "weighted_mode"),
+    "central_alarm": ("central_alarm", "weighted_mode"),
+    "direct_alarm": ("direct_alarm", "weighted_mode"),
+    "local_fire": ("local_fire", "weighted_mode"),
+    "brush_area": ("brush_area", "weighted_mode"),
+    "roof_type": ("roof_type", "weighted_mode"),
 
-    "policy_form": ("policy_form", "last"),
-    "occupancy": ("occupancy", "last"),
-    "nbr_of_families": ("nbr_of_families", "last"),
-    "protection_class": ("protection_class", "last"),
-    "deductible": ("deductible", "last"),
-
-    "extended_coverage": ("extended_coverage", "last"),
+    "occupancy": ("occupancy", "weighted_mode"),
+    "nbr_of_families": ("nbr_of_families", "weighted_mode"),
+    "protection_class": ("protection_class", "weighted_mode"),
+    "deductible": ("deductible", "weighted_mean"),
     "policy_tenure_years": ("policy_tenure_years", "last"),
 }
 
@@ -68,59 +49,6 @@ POLICY_YEAR_OUTPUT_COLS = [
 ] + list(POLICY_YEAR_VALUE_COLS)
 
 
-# POLICY_LOCATION_COLS = [
-#     "property_addr_nbr",
-#     "property_street_name",
-#     "property_city",
-#     "property_state",
-#     "property_zipcode",
-#     "construction_type",
-#     "construction_year",
-#     "roof_type",
-#     "sq_ft_dwelling",
-#     "dic_coverage",
-# ]
-
-# POLICY_LOCATION_COLS = [
-#     "property_addr_nbr",
-#     "property_street_name",
-#     "property_city",
-#     "property_state",
-#     "property_zipcode",
-#     "construction_type",
-#     "construction_year",
-#     "roof_type",
-#     "sq_ft_dwelling",
-#     "dic_coverage",
-#     "residence_type",
-#     "occupant",
-#     "structure_type",
-#     "foundation",
-#     "ho_fire_station_miles",
-#     "fireplace_spark_arrestor",
-#     "nbr_of_years_insured",
-#     "central_alarm_type",
-#     "nbr_active_df_policies",
-
-#     # New policy fields
-#     "policy_form",
-#     "occupancy",
-#     "nbr_of_families",
-#     "protection_class",
-
-#     # Coverage fields
-#     "dwelling_limit",
-#     "structure_limit",
-#     "property_limit",
-#     "loss_of_use_limit",
-#     "contents_limit",
-#     "deductible",
-
-#     # Dwelling fire fields
-#     "extended_coverage",
-#     "special_form_coverage",
-# ]
-
 POLICY_LOCATION_COLS = [
     "property_addr_nbr",
     "property_street_name",
@@ -129,28 +57,18 @@ POLICY_LOCATION_COLS = [
     "property_zipcode",
     "construction_type",
     "construction_year",
-    "roof_type",
     "sq_ft_dwelling",
     "structure_type",
     "foundation",
-    "ho_fire_station_miles",
     "fireplace_spark_arrestor",
+    "policy_form",
+    "residence_type",
+    "occupant",
+    "ho_central_alarm_type",
+    "nbr_active_df_policies",
+    "fire_station_miles",
+    "hydrant_feet",
 ]
-
-# POLICY_YEAR_OUTPUT_COLS = [
-#     "policy_search_nbr",
-#     "building_key",
-#     "location_number",
-#     "year",
-#     "num_months",
-#     "exposure_years",
-#     "dec_policy",
-#     "tiv",
-#     "cov_a_dwelling",
-#     "contents_limit",
-#     "loss_of_use",
-# ]
-
 
 
 def load_policy_data(engine):
@@ -262,24 +180,23 @@ def build_policy_location(df_policy: pd.DataFrame) -> pd.DataFrame:
     require_columns(df_policy, required_cols)
 
     df = df_policy[required_cols].copy()
-    df["address"] = build_address(df)
+    keys = ["policy_search_nbr", "building_key"]
+    df = df.sort_values(keys + ["term_effective_date"])
 
-    df = (
-        df
-        .sort_values([
-            "policy_search_nbr",
-            "building_key",
-            "term_effective_date",
-        ])
-        .drop_duplicates(
-            subset=["policy_search_nbr", "building_key"],
-            keep="last",
-        )
-    )
+    # Keep address components from the latest record until the address review is closed.
+    locations = df.drop_duplicates(keys, keep="last")[id_cols + POLICY_LOCATION_COLS].copy()
+    locations = locations.set_index(keys)
 
+    # Other property fields use the latest valid value independently.
+    for col in POLICY_LOCATION_COLS[5:]:
+        latest = df.dropna(subset=[col]).drop_duplicates(keys, keep="last")
+        locations[col] = latest.set_index(keys)[col]
+
+    locations = locations.reset_index()
+    locations["address"] = build_address(locations)
     output_cols = id_cols + POLICY_LOCATION_COLS + ["address"]
 
-    return df[output_cols].reset_index(drop=True)
+    return locations[output_cols].reset_index(drop=True)
 
 
 def expand_policy_terms(df_policy: pd.DataFrame) -> pd.DataFrame:
@@ -350,53 +267,73 @@ def build_policy_year(df_policy: pd.DataFrame) -> pd.DataFrame:
     if expanded_df.empty:
         return pd.DataFrame(columns=POLICY_YEAR_OUTPUT_COLS)
 
-    value_aggregations = {
-        output_col: (
-            output_col,
-            aggregation,
-        )
-        for output_col, (
-            _,
-            aggregation,
-        ) in POLICY_YEAR_VALUE_COLS.items()
-    }
+    keys = ["policy_search_nbr", "building_key", "year"]
+    expanded_df = expanded_df.sort_values(
+        keys + ["term_effective_date"]
+    )
 
+    last_cols = {
+        col: (col, "last")
+        for col, (_, aggregation) in POLICY_YEAR_VALUE_COLS.items()
+        if aggregation == "last"
+    }
     final_df = (
-        expanded_df
-        .sort_values(
-            [
-                "policy_search_nbr",
-                "building_key",
-                "year",
-                "term_effective_date",
-            ]
-        )
-        .groupby(
-            [
-                "policy_search_nbr",
-                "building_key",
-                "year",
-            ],
-            as_index=False,
-            sort=False,
-        )
+        expanded_df.groupby(keys, as_index=False, sort=False)
         .agg(
             num_months=("num_months", "sum"),
             location_number=("location_number", "last"),
             dec_policy=("dec_policy", "last"),
-            **value_aggregations,
+            **last_cols,
         )
+        .set_index(keys)
     )
 
+    mean_cols = [
+        col for col, (_, aggregation) in POLICY_YEAR_VALUE_COLS.items()
+        if aggregation == "weighted_mean"
+    ]
+    weighted_values = expanded_df[mean_cols].mul(
+        expanded_df["num_months"], axis=0
+    )
+    valid_weights = expanded_df[mean_cols].notna().mul(
+        expanded_df["num_months"], axis=0
+    )
+    weighted_values[keys] = expanded_df[keys]
+    valid_weights[keys] = expanded_df[keys]
+    weighted_sums = weighted_values.groupby(keys, sort=False)[mean_cols].sum(
+        min_count=1
+    )
+    weight_sums = valid_weights.groupby(keys, sort=False)[mean_cols].sum()
+    final_df[mean_cols] = weighted_sums / weight_sums
+
+    for col, (_, aggregation) in POLICY_YEAR_VALUE_COLS.items():
+        if aggregation != "weighted_mode":
+            continue
+
+        valid = expanded_df.loc[expanded_df[col].notna()]
+        weights = (
+            valid.groupby(keys + [col], as_index=False, sort=False)
+            .agg(
+                weight=("num_months", "sum"),
+                latest_term=("term_effective_date", "max"),
+            )
+        )
+        latest_mode = (
+            weights.sort_values(
+                ["weight", "latest_term"],
+                ascending=[False, False],
+                kind="stable",
+            )
+            .drop_duplicates(keys, keep="first")
+            .set_index(keys)[col]
+        )
+        final_df[col] = latest_mode
+
+    final_df = final_df.reset_index()
     final_df["num_months"] = final_df["num_months"].round(2)
+    final_df["exposure_years"] = (final_df["num_months"] / 12).round(4)
 
-    final_df["exposure_years"] = (
-        final_df["num_months"] / 12
-    ).round(4)
-
-    return final_df[
-        POLICY_YEAR_OUTPUT_COLS
-    ].reset_index(drop=True)
+    return final_df[POLICY_YEAR_OUTPUT_COLS].reset_index(drop=True)
 
 
 def build_policy_tables(df_policy: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -405,6 +342,54 @@ def build_policy_tables(df_policy: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataF
 
     print("Assigning location numbers...")
     df_policy = assign_location_numbers(df_policy)
+
+    print("Cleaning policy values...")
+    df_policy["roof_type"] = df_policy["roof_type"].replace({
+        "Shake": "Wood Shake",
+        "Tar and Gravel": "Tar & Gravel",
+        "Unknown": pd.NA,
+        "No Value": pd.NA,
+        "Not Applicable": pd.NA,
+    })
+    df_policy["ho_central_alarm_type"] = df_policy["ho_central_alarm_type"].replace(
+        {"Central Fire And Burglar": "Central Fire and Burglar"}
+    )
+    df_policy["dic_coverage"] = df_policy["dic_coverage"].replace(-1, 1)
+
+    for col, lower, upper in [
+        ("ho_credit_score_use", 300, 890),
+        ("policy_tenure_years", 0, 89),
+        ("construction_year", 1800, pd.Timestamp.today().year),
+        ("sq_ft_dwelling", 300, 19999),
+        ("nbr_active_df_policies", 0, 100),
+    ]:
+        df_policy[col] = pd.to_numeric(df_policy[col], errors="coerce")
+        df_policy.loc[
+            ~df_policy[col].between(lower, upper), col
+        ] = float("nan")
+
+    # Decoded 2660xx lookup IDs are not literal distances.
+    station = pd.to_numeric(df_policy["fire_station_miles"], errors="coerce")
+    df_policy["fire_station_miles"] = pd.Series(index=df_policy.index, dtype="object")
+    df_policy.loc[
+        station.eq(266046) | station.between(0, 5, inclusive="right"),
+        "fire_station_miles",
+    ] = "<=5 miles"
+    df_policy.loc[
+        station.eq(266047) | station.between(5, 266000, inclusive="neither"),
+        "fire_station_miles",
+    ] = ">5 miles"
+
+    hydrant = pd.to_numeric(df_policy["hydrant_feet"], errors="coerce")
+    df_policy["hydrant_feet"] = pd.Series(index=df_policy.index, dtype="object")
+    df_policy.loc[
+        hydrant.eq(266044) | hydrant.between(0, 1000),
+        "hydrant_feet",
+    ] = "<=1,000 feet"
+    df_policy.loc[
+        hydrant.eq(266045) | hydrant.between(1000, 266000, inclusive="neither"),
+        "hydrant_feet",
+    ] = ">1,000 feet"
 
     print("Building policy_location...")
     policy_location = build_policy_location(df_policy)

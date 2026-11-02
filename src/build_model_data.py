@@ -259,7 +259,12 @@ def build_model_data(peril: str, data_root: str | Path) -> Path:
         "many_to_one",
     )
 
-    df_model = df_model.copy()
+    df_model = df_model[df_model["policy_form"] != "DFC-1"].copy()
+
+    df_model["business_line"] = df_model["business_line"].replace({
+        "Homeowner": "HOC",
+        "Dwelling Fire": "DFC",
+    })
 
     df_model["construction_year"] = pd.to_numeric(
         df_model["construction_year"], errors="coerce"
